@@ -1,7 +1,7 @@
 {
   "url": "https://cad.onshape.com/documents/d578f2fbdc332270e30f24e5/w/ba84a5b38e318fd89e8c140d/e/9356b596fb5246da0639ba81",
   "output_format": "mujoco",
-  "output_filename": "HexaBot",
+  "output_filename": "Robot",
   "use_visual_meshes": true,
   "use_collision_meshes": true,
   "simplify_collision_meshes": true

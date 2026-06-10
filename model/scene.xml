@@ -1,5 +1,10 @@
 <mujoco model="scene">
-    <include file="HexaBot.xml" />
+    <default>
+        <geom solref="0.02 1" solimp="0.9 0.95 0.001" friction="0.5 0.05 0.005"/>
+    </default>
+
+    <include file="Robot.xml" />
+    <include file="Laberinto.xml"/>
 
     <visual>
         <headlight diffuse="0.6 0.6 0.6" ambient="0.3 0.3 0.3" specular="0 0 0" />
@@ -16,9 +21,8 @@
         <material name="groundplane" texture="groundplane" texuniform="true" texrepeat="5 5"
             reflectance="0.2" />
     </asset>
-
     <worldbody>
-        <light pos="0 0 3.5" dir="0 0 -1" directional="true" />
-        <geom name="floor" size="0 0 0.05" pos="0 0 0" type="plane" material="groundplane" />
+        <geom type="plane" size="10 10 0.1" material="groundplane"/>
     </worldbody>
+
 </mujoco>

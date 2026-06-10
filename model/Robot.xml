@@ -1,0 +1,98 @@
+<?xml version="1.0" ?>
+<!-- Generated using onshape-to-robot -->
+<!-- Onshape https://cad.onshape.com/documents/d578f2fbdc332270e30f24e5/w/ba84a5b38e318fd89e8c140d/e/9356b596fb5246da0639ba81 -->
+<mujoco model="d:\USC\Proyectos\LaberintIA\LaberintIA_FrameWork\model">
+  <compiler angle="radian" meshdir="assets" autolimits="true"/>
+  <default>
+    <default class="d:\USC\Proyectos\LaberintIA\LaberintIA_FrameWork\model">
+      <joint frictionloss="0.1" armature="0.005"/>
+      <position kp="50" dampratio="1"/>
+      <default class="visual">
+        <geom type="mesh" contype="0" conaffinity="0" group="2"/>
+      </default>
+      <default class="collision">
+        <geom group="3"/>
+      </default>
+    </default>
+  </default>
+  <worldbody>
+    <!-- Link base -->
+    <body name="base" pos="4.5 4.5 0.075" quat="-0.690972 0 0 0.722881" childclass="d:\USC\Proyectos\LaberintIA\LaberintIA_FrameWork\model">
+      <freejoint name="base_freejoint"/>
+      <inertial pos="0.00307768 0.000105962 -0.000964714" mass="0.12856" fullinertia="0.000346572 0.000350062 0.000655475 -0.000262893 -6.67677e-06 2.86089e-07"/>
+
+      <!-- SENSORES -->
+      <site name="sensor_front"  type="sphere" size="0.01" pos="0.072 -0.008 -0.006" zaxis="1 0 0" rgba="1 0 0 1"/>
+      <site name="sensor_left"   type="sphere" size="0.01" pos="0.015 0.049 -0.006" zaxis="0 0.9 0" rgba="0 1 0 1"/>
+      <site name="sensor_right"  type="sphere" size="0.01" pos="0.025 -0.070 -0.006" zaxis="0 -0.9 -0" rgba="0 0 1 1"/>
+      <site name="sensor_base" type="sphere" size="0.01" pos="0.025 0.0 -0.01" zaxis="0 0 1" rgba="1 1 1 1"/>
+
+      <!-- Part hc_l -->
+      <geom type="mesh" class="visual" pos="0.00253847 -0.00166622 0.002" quat="0.707107 0 -0 -0.707107" mesh="hc_l" material="hc_l_material"/>
+      <geom type="mesh" class="collision" pos="0.00253847 -0.00166622 0.002" quat="0.707107 0 -0 -0.707107" mesh="hc_l" material="hc_l_material"/>
+      <!-- Part part_1 -->
+      <geom type="mesh" class="visual" pos="-0.0618028 -0.0632851 0" quat="0 0 -1 -0" mesh="part_1" material="part_1_material"/>
+      <geom type="mesh" class="collision" pos="-0.0618028 -0.0632851 0" quat="0 0 -1 -0" mesh="part_1" material="part_1_material"/>
+      <!-- Part part_1_2 -->
+      <geom type="mesh" class="visual" pos="0.0599143 0.0615782 -0.025" quat="1 0 0 0" mesh="part_1" material="part_1_material"/>
+      <geom type="mesh" class="collision" pos="0.0599143 0.0615782 -0.025" quat="1 0 0 0" mesh="part_1" material="part_1_material"/>
+      <!-- Part hc_r -->
+      <geom type="mesh" class="visual" pos="-0.00300651 0.000393705 0.002" quat="0.707107 0 -0 -0.707107" mesh="hc_r" material="hc_r_material"/>
+      <geom type="mesh" class="collision" pos="-0.00300651 0.000393705 0.002" quat="0.707107 0 -0 -0.707107" mesh="hc_r" material="hc_r_material"/>
+      <!-- Part base -->
+      <geom type="mesh" class="visual" pos="-0.00101206 4.58262e-05 0" quat="0.707107 0 -0 -0.707107" mesh="base" material="base_material"/>
+      <geom type="mesh" class="collision" pos="-0.00101206 4.58262e-05 0" quat="0.707107 0 -0 -0.707107" mesh="base" material="base_material"/>
+      <!-- Part hc_c -->
+      <geom type="mesh" class="visual" pos="-0.000267862 0.00117953 0.002" quat="0.707107 0 -0 -0.707107" mesh="hc_c" material="hc_c_material"/>
+      <geom type="mesh" class="collision" pos="-0.000267862 0.00117953 0.002" quat="0.707107 0 -0 -0.707107" mesh="hc_c" material="hc_c_material"/>
+      <!-- Link part_1 -->
+      <body name="part_1" pos="-0.0822062 -0.0621031 -0.0125" quat="0 0 0.707107 0.707107">
+        <!-- Joint from base to part_1 -->
+        <joint axis="0 0 1" name="whell_back" type="hinge"/>
+        <inertial pos="-0 -0 -0" mass="0.144488" fullinertia="0.000120082 0.000120082 7.83899e-05 -0 0 -0"/>
+        <!-- Part part_1_3 -->
+        <geom type="mesh" class="visual" pos="0.00424189 -0 -0.0129852" quat="0 0 0.707107 0.707107" mesh="part_1__2" material="part_1__2_material"/>
+        <geom type="mesh" class="collision" pos="0.00424189 -0 -0.0129852" quat="0 0 0.707107 0.707107" mesh="part_1__2" material="part_1__2_material"/>
+      </body>
+      <!-- Link part_1_2 -->
+      <body name="part_1_2" pos="0.0803177 0.0627602 -0.0125" quat="0.707107 0.707107 -0 -0">
+        <!-- Joint from base to part_1_2 -->
+        <joint axis="0 0 1" name="whell_front" type="hinge"/>
+        <inertial pos="0 0 0" mass="0.144488" fullinertia="0.000120082 0.000120082 7.83899e-05 0 0 0"/>
+        <!-- Part part_1_4 -->
+        <geom type="mesh" class="visual" pos="-0.00424189 0 0.0129852" quat="0.707107 -0.707107 0 0" mesh="part_1__2" material="part_1__2_material"/>
+        <geom type="mesh" class="collision" pos="-0.00424189 0 0.0129852" quat="0.707107 -0.707107 0 0" mesh="part_1__2" material="part_1__2_material"/>
+      </body>
+    </body>
+  </worldbody>
+  <asset>
+    <mesh file="hc_r.stl"/>
+    <mesh file="base.stl"/>
+    <mesh file="part_1.stl"/>
+    <mesh file="part_1__2.stl"/>
+    <mesh file="hc_c.stl"/>
+    <mesh file="hc_l.stl"/>
+    <material name="hc_l_material" rgba="0.231373 0.380392 0.705882 1"/>
+    <material name="part_1_material" rgba="0.615686 0.811765 0.929412 1"/>
+    <material name="hc_r_material" rgba="0.615686 0.811765 0.929412 1"/>
+    <material name="base_material" rgba="0.615686 0.811765 0.929412 1"/>
+    <material name="hc_c_material" rgba="0.647059 0.647059 0.647059 1"/>
+    <material name="part_1__2_material" rgba="0.615686 0.811765 0.929412 1"/>
+  </asset>
+  
+  <actuator>
+    <motor name="motor_whell_back" joint="whell_back" ctrlrange="-1 1"/>
+    <motor name="motor_whell_front" joint="whell_front" ctrlrange="-1 1"/>
+  </actuator>
+  
+  <equality/>
+  
+  <!-- ========== SENSORES RANGEFINDER ========== -->
+  <sensor>
+    <rangefinder name="dist_front"  site="sensor_front"  cutoff="1.5"/>
+    <rangefinder name="dist_left"   site="sensor_left"   cutoff="1.5"/>
+    <rangefinder name="dist_right"  site="sensor_right"  cutoff="1.5"/>
+    <accelerometer name="accelerometer_base" site="sensor_base" />
+    <gyro name="gyro_base" site="sensor_base" />
+  </sensor>
+</mujoco>

@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro">
+  <material name="hc_l_material">
+    <color rgba="0.231373 0.380392 0.705882 1"/>
+  </material>
+  <material name="part_1_material">
+    <color rgba="0.615686 0.811765 0.929412 1"/>
+  </material>
+  <material name="hc_r_material">
+    <color rgba="0.615686 0.811765 0.929412 1"/>
+  </material>
+  <material name="base_material">
+    <color rgba="0.615686 0.811765 0.929412 1"/>
+  </material>
+  <material name="hc_c_material">
+    <color rgba="0.647059 0.647059 0.647059 1"/>
+  </material>
+  <material name="part_1__2_material">
+    <color rgba="0.615686 0.811765 0.929412 1"/>
+  </material>
+  <material name="sensor_red">
+    <color rgba="1 0 0 1"/>
+  </material>
+  <material name="sensor_green">
+    <color rgba="0 1 0 1"/>
+  </material>
+  <material name="sensor_blue">
+    <color rgba="0 0 1 1"/>
+  </material>
+  <material name="sensor_white">
+    <color rgba="1 1 1 1"/>
+  </material>
+</robot>

@@ -1,0 +1,63 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro">
+  
+  <xacro:macro name="robot_base" params="name">
+    <link name="${name}">
+      <inertial>
+        <origin xyz="0.00307768 0.000105962 -0.000964714" rpy="0 0 0"/>
+        <mass value="0.12856"/>
+        <inertia ixx="0.000346572" ixy="-6.67677e-06" ixz="2.86089e-07" iyy="0.000350062" iyz="-0.000262893" izz="0.000655475"/>
+      </inertial>
+
+      <visual>
+        <origin xyz="0.00253847 -0.00166622 0.002" rpy="-1.5708 0 0"/>
+        <geometry><mesh filename="package://tu_paquete/meshes/hc_l.stl"/></geometry>
+        <material name="hc_l_material"/>
+      </visual>
+      <collision>
+        <origin xyz="0.00253847 -0.00166622 0.002" rpy="-1.5708 0 0"/>
+        <geometry><mesh filename="package://tu_paquete/meshes/hc_l.stl"/></geometry>
+      </collision>
+
+      <visual>
+        <origin xyz="-0.0618028 -0.0632851 0" rpy="0 0 3.14159"/>
+        <geometry><mesh filename="package://tu_paquete/meshes/part_1.stl"/></geometry>
+        <material name="part_1_material"/>
+      </visual>
+      <collision>
+        <origin xyz="-0.0618028 -0.0632851 0" rpy="0 0 3.14159"/>
+        <geometry><mesh filename="package://tu_paquete/meshes/part_1.stl"/></geometry>
+      </collision>
+
+      <visual>
+        <origin xyz="-0.00300651 0.000393705 0.002" rpy="-1.5708 0 0"/>
+        <geometry><mesh filename="package://tu_paquete/meshes/hc_r.stl"/></geometry>
+        <material name="hc_r_material"/>
+      </visual>
+      <collision>
+        <origin xyz="-0.00300651 0.000393705 0.002" rpy="-1.5708 0 0"/>
+        <geometry><mesh filename="package://tu_paquete/meshes/hc_r.stl"/></geometry>
+      </collision>
+
+      <visual>
+        <origin xyz="-0.00101206 4.58262e-05 0" rpy="-1.5708 0 0"/>
+        <geometry><mesh filename="package://tu_paquete/meshes/base.stl"/></geometry>
+        <material name="base_material"/>
+      </visual>
+      <collision>
+        <origin xyz="-0.00101206 4.58262e-05 0" rpy="-1.5708 0 0"/>
+        <geometry><mesh filename="package://tu_paquete/meshes/base.stl"/></geometry>
+      </collision>
+
+      <visual>
+        <origin xyz="-0.000267862 0.00117953 0.002" rpy="-1.5708 0 0"/>
+        <geometry><mesh filename="package://tu_paquete/meshes/hc_c.stl"/></geometry>
+        <material name="hc_c_material"/>
+      </visual>
+      <collision>
+        <origin xyz="-0.000267862 0.00117953 0.002" rpy="-1.5708 0 0"/>
+        <geometry><mesh filename="package://tu_paquete/meshes/hc_c.stl"/></geometry>
+      </collision>
+    </link>
+  </xacro:macro>
+</robot>
