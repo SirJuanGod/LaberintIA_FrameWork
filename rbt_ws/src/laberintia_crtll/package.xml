@@ -1,0 +1,45 @@
+<?xml version="1.0"?>
+<package format="3">
+  <name>laberintia_crtll</name>
+  <version>0.0.1</version>
+  <description>LaberintIA robot control and simulation package for ROS2</description>
+
+  <maintainer email="sjg@todo.todo">SJG</maintainer>
+  <license>MIT</license>
+
+  <url type="website">https://github.com/SirJuanGod/LaberintIA_FrameWork</url>
+  <author email="sjg@todo.todo">SJG</author>
+
+  <buildtool_depend>ament_python</buildtool_depend>
+  
+  <!-- Dependencies for launch files -->
+  <depend>launch</depend>
+  <depend>launch-ros</depend>
+  
+  <!-- Dependencies for simulation -->
+  <depend>ros_gz_sim</depend>
+  <depend>ros_gz_bridge</depend>
+  <depend>robot_state_publisher</depend>
+  <depend>joint_state_publisher</depend>
+  <depend>xacro</depend>
+  
+  <!-- ROS2 core -->
+  <depend>rclpy</depend>
+  <depend>std_msgs</depend>
+  <depend>geometry_msgs</depend>
+  <depend>sensor_msgs</depend>
+  <depend>nav_msgs</depend>
+  <depend>tf2</depend>
+  <depend>tf2-ros</depend>
+  
+  <!-- RL and control dependencies -->
+  <depend>numpy</depend>
+  <depend>gymnasium</depend>
+  
+  <test_depend>ament_lint_auto</test_depend>
+  <test_depend>ament_lint_common</test_depend>
+
+  <export>
+    <build_type>ament_python</build_type>
+  </export>
+</package>

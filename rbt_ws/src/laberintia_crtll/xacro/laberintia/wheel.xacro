@@ -1,0 +1,43 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro">
+  
+  <xacro:macro name="robot_wheel" params="prefix parent joint_name origin_xyz origin_rpy mesh_xyz mesh_rpy">
+    
+    <joint name="${joint_name}" type="continuous">
+      <parent link="${parent}"/>
+      <child link="${prefix}_link"/>
+      <origin xyz="${origin_xyz}" rpy="${origin_rpy}"/>
+      <axis xyz="0 0 1"/>
+      <dynamics damping="1.0" friction="0.1"/>
+    </joint>
+
+    <link name="${prefix}_link">
+      <inertial>
+        <origin xyz="0 0 0" rpy="0 0 0"/>
+        <mass value="0.144488"/>
+        <inertia ixx="0.000120082" ixy="0" ixz="0" iyy="0.000120082" iyz="0" izz="7.83899e-05"/>
+      </inertial>
+      
+      <visual>
+        <origin xyz="${mesh_xyz}" rpy="${mesh_rpy}"/>
+        <geometry><mesh filename="package://laberintia_crtll/meshes/laberintia_mdl/part_1__2.stl"/></geometry>
+        <material name="part_1__2_material"/>
+      </visual>
+      <collision>
+        <origin xyz="${mesh_xyz}" rpy="${mesh_rpy}"/>
+        <geometry><mesh filename="package://laberintia_crtll/meshes/laberintia_mdl/part_1__2.stl"/></geometry>
+      </collision>
+    </link>
+
+    <transmission name="${joint_name}_trans">
+      <type>transmission_interface/SimpleTransmission</type>
+      <joint name="${joint_name}">
+        <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+      </joint>
+      <actuator name="${joint_name}_motor">
+        <mechanicalReduction>1</mechanicalReduction>
+      </actuator>
+    </transmission>
+
+  </xacro:macro>
+</robot>

@@ -1,0 +1,239 @@
+<?xml version="1.0" ?>
+<!-- Generated using onshape-to-robot -->
+<!-- Onshape https://cad.onshape.com/documents/d578f2fbdc332270e30f24e5/w/ba84a5b38e318fd89e8c140d/e/9356b596fb5246da0639ba81 -->
+<sdf version="1.7">
+  <model name="d:\USC\Proyectos\LaberintIA\LaberintIA_FrameWork\model">
+    <!-- Link base -->
+    <link name="base">
+      <inertial>
+        <pose>0.00307768 0.000105962 -0.000964714 0 0 0</pose>
+        <mass>0.12856</mass>
+        <inertia>
+          <ixx>0.000346572</ixx>
+          <ixy>-0.000262893</ixy>
+          <ixz>-6.67677e-06</ixz>
+          <iyy>0.000350062</iyy>
+          <iyz>2.86089e-07</iyz>
+          <izz>0.000655475</izz>
+        </inertia>
+      </inertial>
+      <pose>0 0 0 0 -0 0</pose>
+      <!-- Part hc_l -->
+      <visual name="hc_l_visual_mesh_1">
+        <pose relative_to="base">0.00253847 -0.00166622 0.002 -0 -0 -1.5708</pose>
+        <geometry>
+          <mesh>
+            <uri>model://d:\USC\Proyectos\LaberintIA\LaberintIA_FrameWork\model/assets\hc_l.stl</uri>
+          </mesh>
+        </geometry>
+        <material>
+          <ambient>0.231373 0.380392 0.705882 1</ambient>
+          <diffuse>0.231373 0.380392 0.705882 1</diffuse>
+          <specular>0.1 0.1 0.1 1</specular>
+          <emissive>0 0 0 0</emissive>
+        </material>
+      </visual>
+      <collision name="hc_l_collision_mesh_2">
+        <pose relative_to="base">0.00253847 -0.00166622 0.002 -0 -0 -1.5708</pose>
+        <geometry>
+          <mesh>
+            <uri>model://d:\USC\Proyectos\LaberintIA\LaberintIA_FrameWork\model/assets\hc_l.stl</uri>
+          </mesh>
+        </geometry>
+      </collision>
+      <!-- Part part_1 -->
+      <visual name="part_1_visual_mesh_1">
+        <pose relative_to="base">-0.0618028 -0.0632851 0 3.14159 -0 -3.14159</pose>
+        <geometry>
+          <mesh>
+            <uri>model://d:\USC\Proyectos\LaberintIA\LaberintIA_FrameWork\model/assets\part_1.stl</uri>
+          </mesh>
+        </geometry>
+        <material>
+          <ambient>0.615686 0.811765 0.929412 1</ambient>
+          <diffuse>0.615686 0.811765 0.929412 1</diffuse>
+          <specular>0.1 0.1 0.1 1</specular>
+          <emissive>0 0 0 0</emissive>
+        </material>
+      </visual>
+      <collision name="part_1_collision_mesh_2">
+        <pose relative_to="base">-0.0618028 -0.0632851 0 3.14159 -0 -3.14159</pose>
+        <geometry>
+          <mesh>
+            <uri>model://d:\USC\Proyectos\LaberintIA\LaberintIA_FrameWork\model/assets\part_1.stl</uri>
+          </mesh>
+        </geometry>
+      </collision>
+      <!-- Part part_1_2 -->
+      <visual name="part_1_2_visual_mesh_1">
+        <pose relative_to="base">0.0599143 0.0615782 -0.025 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <uri>model://d:\USC\Proyectos\LaberintIA\LaberintIA_FrameWork\model/assets\part_1.stl</uri>
+          </mesh>
+        </geometry>
+        <material>
+          <ambient>0.615686 0.811765 0.929412 1</ambient>
+          <diffuse>0.615686 0.811765 0.929412 1</diffuse>
+          <specular>0.1 0.1 0.1 1</specular>
+          <emissive>0 0 0 0</emissive>
+        </material>
+      </visual>
+      <collision name="part_1_2_collision_mesh_2">
+        <pose relative_to="base">0.0599143 0.0615782 -0.025 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <uri>model://d:\USC\Proyectos\LaberintIA\LaberintIA_FrameWork\model/assets\part_1.stl</uri>
+          </mesh>
+        </geometry>
+      </collision>
+      <!-- Part hc_r -->
+      <visual name="hc_r_visual_mesh_1">
+        <pose relative_to="base">-0.00300651 0.000393705 0.002 -0 -0 -1.5708</pose>
+        <geometry>
+          <mesh>
+            <uri>model://d:\USC\Proyectos\LaberintIA\LaberintIA_FrameWork\model/assets\hc_r.stl</uri>
+          </mesh>
+        </geometry>
+        <material>
+          <ambient>0.615686 0.811765 0.929412 1</ambient>
+          <diffuse>0.615686 0.811765 0.929412 1</diffuse>
+          <specular>0.1 0.1 0.1 1</specular>
+          <emissive>0 0 0 0</emissive>
+        </material>
+      </visual>
+      <collision name="hc_r_collision_mesh_2">
+        <pose relative_to="base">-0.00300651 0.000393705 0.002 -0 -0 -1.5708</pose>
+        <geometry>
+          <mesh>
+            <uri>model://d:\USC\Proyectos\LaberintIA\LaberintIA_FrameWork\model/assets\hc_r.stl</uri>
+          </mesh>
+        </geometry>
+      </collision>
+      <!-- Part base -->
+      <visual name="base_visual_mesh_1">
+        <pose relative_to="base">-0.00101206 4.58262e-05 0 -0 -0 -1.5708</pose>
+        <geometry>
+          <mesh>
+            <uri>model://d:\USC\Proyectos\LaberintIA\LaberintIA_FrameWork\model/assets\base.stl</uri>
+          </mesh>
+        </geometry>
+        <material>
+          <ambient>0.615686 0.811765 0.929412 1</ambient>
+          <diffuse>0.615686 0.811765 0.929412 1</diffuse>
+          <specular>0.1 0.1 0.1 1</specular>
+          <emissive>0 0 0 0</emissive>
+        </material>
+      </visual>
+      <collision name="base_collision_mesh_2">
+        <pose relative_to="base">-0.00101206 4.58262e-05 0 -0 -0 -1.5708</pose>
+        <geometry>
+          <mesh>
+            <uri>model://d:\USC\Proyectos\LaberintIA\LaberintIA_FrameWork\model/assets\base.stl</uri>
+          </mesh>
+        </geometry>
+      </collision>
+      <!-- Part hc_c -->
+      <visual name="hc_c_visual_mesh_1">
+        <pose relative_to="base">-0.000267862 0.00117953 0.002 -0 -0 -1.5708</pose>
+        <geometry>
+          <mesh>
+            <uri>model://d:\USC\Proyectos\LaberintIA\LaberintIA_FrameWork\model/assets\hc_c.stl</uri>
+          </mesh>
+        </geometry>
+        <material>
+          <ambient>0.647059 0.647059 0.647059 1</ambient>
+          <diffuse>0.647059 0.647059 0.647059 1</diffuse>
+          <specular>0.1 0.1 0.1 1</specular>
+          <emissive>0 0 0 0</emissive>
+        </material>
+      </visual>
+      <collision name="hc_c_collision_mesh_2">
+        <pose relative_to="base">-0.000267862 0.00117953 0.002 -0 -0 -1.5708</pose>
+        <geometry>
+          <mesh>
+            <uri>model://d:\USC\Proyectos\LaberintIA\LaberintIA_FrameWork\model/assets\hc_c.stl</uri>
+          </mesh>
+        </geometry>
+      </collision>
+    </link>
+    <!-- Link part_1 -->
+    <link name="part_1">
+      <inertial>
+        <pose>-0.0822062 -0.0621031 -0.0125 0 0 0</pose>
+        <mass>0.144488</mass>
+        <inertia>
+          <ixx>0.000120082</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>7.83899e-05</iyy>
+          <iyz>0</iyz>
+          <izz>0.000120082</izz>
+        </inertia>
+      </inertial>
+      <pose>0 0 0 0 -0 0</pose>
+      <!-- Part part_1_3 -->
+      <visual name="part_1_3_visual_mesh_1">
+        <pose relative_to="part_1">-0.086448 -0.0750883 -0.0125 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <uri>model://d:\USC\Proyectos\LaberintIA\LaberintIA_FrameWork\model/assets\part_1__2.stl</uri>
+          </mesh>
+        </geometry>
+        <material>
+          <ambient>0.615686 0.811765 0.929412 1</ambient>
+          <diffuse>0.615686 0.811765 0.929412 1</diffuse>
+          <specular>0.1 0.1 0.1 1</specular>
+          <emissive>0 0 0 0</emissive>
+        </material>
+      </visual>
+      <collision name="part_1_3_collision_mesh_2">
+        <pose relative_to="part_1">-0.086448 -0.0750883 -0.0125 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <uri>model://d:\USC\Proyectos\LaberintIA\LaberintIA_FrameWork\model/assets\part_1__2.stl</uri>
+          </mesh>
+        </geometry>
+      </collision>
+    </link>
+    <!-- Link part_1_2 -->
+    <link name="part_1_2">
+      <inertial>
+        <pose>0.0803177 0.0627602 -0.0125 0 0 0</pose>
+        <mass>0.144488</mass>
+        <inertia>
+          <ixx>0.000120082</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>7.83899e-05</iyy>
+          <iyz>0</iyz>
+          <izz>0.000120082</izz>
+        </inertia>
+      </inertial>
+      <pose>0 0 0 0 -0 0</pose>
+      <!-- Part part_1_4 -->
+      <visual name="part_1_4_visual_mesh_1">
+        <pose relative_to="part_1_2">0.0760758 0.049775 -0.0125 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <uri>model://d:\USC\Proyectos\LaberintIA\LaberintIA_FrameWork\model/assets\part_1__2.stl</uri>
+          </mesh>
+        </geometry>
+        <material>
+          <ambient>0.615686 0.811765 0.929412 1</ambient>
+          <diffuse>0.615686 0.811765 0.929412 1</diffuse>
+          <specular>0.1 0.1 0.1 1</specular>
+          <emissive>0 0 0 0</emissive>
+        </material>
+      </visual>
+      <collision name="part_1_4_collision_mesh_2">
+        <pose relative_to="part_1_2">0.0760758 0.049775 -0.0125 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <uri>model://d:\USC\Proyectos\LaberintIA\LaberintIA_FrameWork\model/assets\part_1__2.stl</uri>
+          </mesh>
+        </geometry>
+      </collision>
+    </link>
+  </model>
+</sdf>

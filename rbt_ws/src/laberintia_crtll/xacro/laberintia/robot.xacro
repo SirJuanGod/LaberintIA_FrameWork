@@ -1,0 +1,29 @@
+<?xml version="1.0"?>
+<robot name="laberintia" xmlns:xacro="http://www.ros.org/wiki/xacro">
+  <xacro:include filename="$(find laberintia_crtll)/xacro/materials.xacro"/>
+  <xacro:include filename="$(find laberintia_crtll)/xacro/laberintia/base.xacro"/>
+  <xacro:include filename="$(find laberintia_crtll)/xacro/laberintia/wheel.xacro"/>
+  <xacro:include filename="$(find laberintia_crtll)/xacro/laberintia/sensors.xacro"/>
+
+  <!-- Gazebo Ignition diff drive plugin -->
+  <gazebo>
+    <plugin filename="gz-sim-diff-drive-system" name="gz::sim::systems::DiffDrive">
+      <left_joint>wheel_left_joint</left_joint>
+      <right_joint>wheel_right_joint</right_joint>
+      <wheel_separation>0.119</wheel_separation>
+      <wheel_radius>0.0125</wheel_radius>
+      <topic>/cmd_vel</topic>
+      <odom_topic>/odom</odom_topic>
+      <odom_publish_frequency>30</odom_publish_frequency>
+      <frame_id>odom</frame_id>
+      <child_frame_id>base_link</child_frame_id>
+    </plugin>
+  </gazebo>
+
+  <xacro:robot_base name="base_link"/>
+  
+  <xacro:robot_wheel prefix="wheel_left" parent="base_link" joint_name="wheel_left_joint" origin_xyz="0.015 0.049 -0.006" origin_rpy="0 0 1.5708" mesh_xyz="0 0 0" mesh_rpy="0 0 0"/>
+  <xacro:robot_wheel prefix="wheel_right" parent="base_link" joint_name="wheel_right_joint" origin_xyz="0.025 -0.070 -0.006" origin_rpy="0 0 -1.5708" mesh_xyz="0 0 0" mesh_rpy="0 0 0"/>
+  
+  <xacro:robot_sensors parent="base_link"/>
+</robot>

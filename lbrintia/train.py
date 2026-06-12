@@ -247,9 +247,9 @@ if save_model and not os.path.exists("./pytorch_models"):
     os.makedirs("./pytorch_models")
 
 # Create the training environment
-environment_dim = 20
+environment_dim = 3
 robot_dim = 4
-env = GazeboEnv("multi_robot_scenario.launch", environment_dim)
+env = GazeboEnv("laberintia.gazebo.launch.py", environment_dim)
 time.sleep(5)
 torch.manual_seed(seed)
 np.random.seed(seed)
