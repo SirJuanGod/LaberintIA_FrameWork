@@ -1,0 +1,210 @@
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="lbt">
+
+  <xacro:include filename="sensors/imu.xacro"/>
+  <xacro:include filename="sensors/hc_sr04_lidar.xacro"/>
+
+  <link name="base_footprint"/>
+  <joint name="base_joint" type="fixed">
+    <parent link="base_footprint"/>
+    <child link="base"/>
+  </joint>
+
+  <!-- ===== Base del Robot ===== -->
+  <link name="base">
+    <inertial>
+      <origin xyz="0.00307768 0.000105962 -0.000964714" rpy="0 0 0"/>
+      <mass value="0.12856"/>
+      <inertia ixx="0.000346572" ixy="-0.000262893" ixz="-6.67677e-06"
+               iyy="0.000350062" iyz="2.86089e-07" izz="0.000655475"/>
+    </inertial>
+    <visual>
+      <origin xyz="0.00253847 -0.00166622 0.002" rpy="-0 -0 -1.5708"/>
+      <geometry>
+        <mesh filename="package://lbt_description/meshes/base.stl"/>
+      </geometry>
+      <material name="base_material">
+        <color rgba="0.231373 0.380392 0.705882 1"/>
+      </material>
+    </visual>
+    <collision>
+      <origin xyz="0.00253847 -0.00166622 0.002" rpy="-0 -0 -1.5708"/>
+      <geometry>
+        <mesh filename="package://lbt_description/meshes/base.stl"/>
+      </geometry>
+    </collision>
+
+    <visual>
+      <origin xyz="-0.0618028 -0.0632851 0" rpy="3.14159 -0 -3.14159"/>
+      <geometry>
+        <mesh filename="package://lbt_description/meshes/part_1.stl"/>
+      </geometry>
+      <material name="part_1_material">
+        <color rgba="0.615686 0.811765 0.929412 1"/>
+      </material>
+    </visual>
+    <collision>
+      <origin xyz="-0.0618028 -0.0632851 0" rpy="3.14159 -0 -3.14159"/>
+      <geometry>
+        <mesh filename="package://lbt_description/meshes/part_1.stl"/>
+      </geometry>
+    </collision>
+
+    <visual>
+      <origin xyz="0.0599143 0.0615782 -0.025" rpy="0 -0 0"/>
+      <geometry>
+        <mesh filename="package://lbt_description/meshes/part_1.stl"/>
+      </geometry>
+      <material name="part_1_2_material">
+        <color rgba="0.615686 0.811765 0.929412 1"/>
+      </material>
+    </visual>
+    <collision>
+      <origin xyz="0.0599143 0.0615782 -0.025" rpy="0 -0 0"/>
+      <geometry>
+        <mesh filename="package://lbt_description/meshes/part_1.stl"/>
+      </geometry>
+    </collision>
+  </link>
+
+  <!-- ===== Enlaces para los sensores (SIN colisión) ===== -->
+  <link name="hc_left">
+    <inertial>
+      <mass value="0.01"/>
+      <inertia ixx="0.0001" ixy="0" ixz="0" iyy="0.0001" iyz="0" izz="0.0001"/>
+    </inertial>
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <mesh filename="package://lbt_description/meshes/hc_l.stl"/>
+      </geometry>
+      <material name="hc_l_material">
+        <color rgba="0.231373 0.380392 0.705882 1"/>
+      </material>
+    </visual>
+    <!-- Sin collision para no dañar lecturas -->
+  </link>
+
+  <link name="hc_right">
+    <inertial>
+      <mass value="0.01"/>
+      <inertia ixx="0.0001" ixy="0" ixz="0" iyy="0.0001" iyz="0" izz="0.0001"/>
+    </inertial>
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <mesh filename="package://lbt_description/meshes/hc_r.stl"/>
+      </geometry>
+      <material name="hc_r_material">
+        <color rgba="0.231373 0.380392 0.705882 1"/>
+      </material>
+    </visual>
+  </link>
+
+  <link name="hc_front">
+    <inertial>
+      <mass value="0.01"/>
+      <inertia ixx="0.0001" ixy="0" ixz="0" iyy="0.0001" iyz="0" izz="0.0001"/>
+    </inertial>
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <mesh filename="package://lbt_description/meshes/hc_c.stl"/>
+      </geometry>
+      <material name="hc_c_material">
+        <color rgba="0.231373 0.380392 0.705882 1"/>
+      </material>
+    </visual>
+  </link>
+
+  <!-- Juntas fijas que posicionan los soportes sobre la base -->
+  <joint name="joint_hc_left" type="fixed">
+    <origin xyz="0.00253847 -0.00166622 0.002" rpy="0 0 -1.5708"/>
+    <parent link="base"/>
+    <child link="hc_left"/>
+  </joint>
+
+  <joint name="joint_hc_right" type="fixed">
+    <origin xyz="-0.00300651 0.000393705 0.002" rpy="0 0 -1.5708"/>
+    <parent link="base"/>
+    <child link="hc_right"/>
+  </joint>
+
+  <joint name="joint_hc_front" type="fixed">
+    <origin xyz="-0.000267862 0.00117953 0.002" rpy="0 0 -1.5708"/>
+    <parent link="base"/>
+    <child link="hc_front"/>
+  </joint>
+
+  <!-- ===== Macros de sensores (padres = los enlaces creados) ===== -->
+  <xacro:hc_sr04_lidar prefix="hc_sr04_left"   parent="hc_left"   topic="scan_left"   xyz="0 0 0" rpy="0 0 0"/>
+  <xacro:hc_sr04_lidar prefix="hc_sr04_center" parent="hc_front" topic="scan_center" xyz="0 0 0" rpy="0 0 0"/>
+  <xacro:hc_sr04_lidar prefix="hc_sr04_right"  parent="hc_right" topic="scan_right"  xyz="0 0 0" rpy="0 0 0"/>
+
+  <!-- ===== Rueda Izquierda ===== -->
+  <link name="rueda_izquierda">
+    <inertial>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <mass value="0.144488"/>
+      <inertia ixx="0.000120082" ixy="0" ixz="0" iyy="0.000120082" iyz="0" izz="7.83899e-05"/>
+    </inertial>
+    <visual>
+      <origin xyz="0.00424189 0 -0.0129852" rpy="1.5708 0 3.14159"/>
+      <geometry>
+        <mesh filename="package://lbt_description/meshes/part_1__2.stl"/>
+      </geometry>
+      <material name="rueda_izq_material">
+        <color rgba="0.615686 0.811765 0.929412 1"/>
+      </material>
+    </visual>
+    <collision>
+      <origin xyz="0.00424189 0 -0.0129852" rpy="1.5708 0 3.14159"/>
+      <geometry>
+        <mesh filename="package://lbt_description/meshes/part_1__2.stl"/>
+      </geometry>
+    </collision>
+  </link>
+
+  <joint name="joint_rueda_izquierda" type="continuous">
+    <origin xyz="-0.0822062 -0.0621031 -0.0125" rpy="1.5708 0 -3.14159"/>
+    <parent link="base"/>
+    <child link="rueda_izquierda"/>
+    <axis xyz="0 0 1"/>
+    <limit effort="10" velocity="10"/>
+  </joint>
+
+  <!-- ===== Rueda Derecha ===== -->
+  <link name="rueda_derecha">
+    <inertial>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <mass value="0.144488"/>
+      <inertia ixx="0.000120082" ixy="0" ixz="0" iyy="0.000120082" iyz="0" izz="7.83899e-05"/>
+    </inertial>
+    <visual>
+      <origin xyz="-0.00424189 0 0.0129852" rpy="-1.5708 0 0"/>
+      <geometry>
+        <mesh filename="package://lbt_description/meshes/part_1__2.stl"/>
+      </geometry>
+      <material name="rueda_der_material">
+        <color rgba="0.615686 0.811765 0.929412 1"/>
+      </material>
+    </visual>
+    <collision>
+      <origin xyz="-0.00424189 0 0.0129852" rpy="-1.5708 0 0"/>
+      <geometry>
+        <mesh filename="package://lbt_description/meshes/part_1__2.stl"/>
+      </geometry>
+    </collision>
+  </link>
+
+  <joint name="joint_rueda_derecha" type="continuous">
+    <origin xyz="0.0803177 0.0627602 -0.0125" rpy="1.5708 0 0"/>
+    <parent link="base"/>
+    <child link="rueda_derecha"/>
+    <axis xyz="0 0 1"/>
+    <limit effort="10" velocity="10"/>
+  </joint>
+
+  <!-- ===== Sensor IMU (macro) ===== -->
+  <xacro:imu_sensor prefix="imu" parent="base" topic="imu" xyz="0 0 0.01" rpy="0 0 0"/>
+
+</robot>
