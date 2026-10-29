@@ -3,12 +3,12 @@
 
   <xacro:macro name="hc_sr04_lidar" params="prefix parent topic xyz rpy">
 
-    <link name="${prefix}">
+    <link name="${prefix}_link">
     </link>
 
     <joint name="${prefix}_joint" type="fixed">
       <parent link="${parent}"/>
-      <child link="${prefix}"/>
+      <child link="${prefix}_link"/>
       <origin xyz="${xyz}" rpy="${rpy}"/>
     </joint>
 

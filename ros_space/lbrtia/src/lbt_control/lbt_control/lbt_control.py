@@ -59,8 +59,8 @@ class lbt_control(Node):
 
     def joint_state_callback(self, msg):
         try:
-            back_idx = msg.name.index('wheel_back')
-            front_idx = msg.name.index('wheel_front')
+            back_idx = msg.name.index('joint_rueda_izquierda')
+            front_idx = msg.name.index('joint_rueda_derecha')
             
             if len(msg.velocity) > max(back_idx, front_idx):
                 self.back_wheel_vel = msg.velocity[back_idx]
@@ -121,7 +121,7 @@ class lbt_control(Node):
         
         joint_msg = JointState()
         joint_msg.header.stamp = current_time.to_msg()
-        joint_msg.name = ['wheel_back', 'wheel_front']
+        joint_msg.name = ['joint_rueda_izquierda', 'joint_rueda_derecha']
         joint_msg.position = [self.back_wheel_pos, self.front_wheel_pos]
         joint_msg.velocity = [self.back_wheel_vel, self.front_wheel_vel]
         self.joint_state_pub.publish(joint_msg)

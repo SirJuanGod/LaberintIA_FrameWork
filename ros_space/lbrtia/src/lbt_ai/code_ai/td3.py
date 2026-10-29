@@ -34,17 +34,11 @@ class Critic(nn.Module):
 
     def forward(self, s, a):
         s1 = F.relu(self.layer_1(s))
-        self.layer_2_s(s1)
-        self.layer_2_a(a)
-        s1 = F.relu(torch.mm(s1, self.layer_2_s.weight.data.t()) + 
-                    torch.mm(a, self.layer_2_a.weight.data.t()) + self.layer_2_a.bias.data)
+        s1 = F.relu(self.layer_2_s(s1) + self.layer_2_a(a))
         q1 = self.layer_3(s1)
 
         s2 = F.relu(self.layer_4(s))
-        self.layer_5_s(s2)
-        self.layer_5_a(a)
-        s2 = F.relu(torch.mm(s2, self.layer_5_s.weight.data.t()) + 
-                    torch.mm(a, self.layer_5_a.weight.data.t()) + self.layer_5_a.bias.data)
+        s2 = F.relu(self.layer_5_s(s2) + self.layer_5_a(a))
         q2 = self.layer_6(s2)
         return q1, q2
 
@@ -77,7 +71,7 @@ class TD3:
             done = torch.Tensor(done).to(device)
 
             # Add noise to target action
-            noise = torch.Tensor(action).data.normal_(0, policy_noise).to(device)
+            noise = torch.randn_like(action) * policy_noise
             noise = noise.clamp(-noise_clip, noise_clip)
             next_action = (self.actor_target(next_state) + noise).clamp(-self.max_action, self.max_action)
 

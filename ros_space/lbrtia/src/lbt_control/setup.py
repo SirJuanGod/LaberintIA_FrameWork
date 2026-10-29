@@ -10,6 +10,7 @@ setup(
         ('share/ament_index/resource_index/packages',
             ['resource/' + package_name]),
         ('share/' + package_name, ['package.xml']),
+        ('share/' + package_name + '/launch', ['launch/lbt_control.launch.py']),
     ],
     package_data={'': ['py.typed']},
     install_requires=['setuptools'],
@@ -25,6 +26,7 @@ setup(
     },
     entry_points={
         'console_scripts': [
+            'lbt_control = lbt_control.lbt_control:main',
         ],
     },
 )

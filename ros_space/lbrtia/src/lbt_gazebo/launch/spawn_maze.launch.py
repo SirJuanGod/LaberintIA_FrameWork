@@ -81,8 +81,8 @@ def generate_launch_description():
         arguments=[
             '-name',  'lbt',
             '-topic', '/robot_description',
-            '-x',     '-5.0',
-            '-y',     '-6.0',
+            '-x',     '-4.5',
+            '-y',     '-4.5',
             '-z',     '0.15',
         ],
     )
@@ -109,6 +109,9 @@ def generate_launch_description():
             '/cmd_vel@geometry_msgs/msg/Twist]gz.msgs.Twist',
             # Nav2 velocity smoother output also drives the robot
             '/cmd_vel_smoothed@geometry_msgs/msg/Twist]gz.msgs.Twist',
+            # Servicios usados por lbt_ai (pausar/reanudar y teletransportar el robot)
+            '/world/maze_world/control@ros_gz_interfaces/srv/ControlWorld',
+            '/world/maze_world/set_pose@ros_gz_interfaces/srv/SetEntityPose',
         ],
     )
 
@@ -129,11 +132,7 @@ def generate_launch_description():
         robot_state_publisher,
         TimerAction(period=2.0, actions=[spawn_entity]),
         bridge,
-        # NOTE: mir_controller is NOT launched here.
-        # In Gazebo Harmonic, gz-sim-diff-drive-system handles:
-        #   • wheel actuation  (from /cmd_vel via bridge)
-        #   • /odom publication (bridged to ROS)
-        #   • odom→base_footprint TF
-        # mir_controller is still used for real-hardware deployments via
-        # src/mir_control/launch/mir_control.launch.py
+        # lbt_control NO se lanza aquí: en Gazebo los plugins del URDF
+        # (diff-drive, odometry-publisher, joint-state-publisher) mueven el
+        # robot y publican /odom, /tf y /joint_states.
     ])

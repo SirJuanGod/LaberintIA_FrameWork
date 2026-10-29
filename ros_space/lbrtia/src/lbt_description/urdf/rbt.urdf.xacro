@@ -136,9 +136,11 @@
   </joint>
 
   <!-- ===== Macros de sensores (padres = los enlaces creados) ===== -->
-  <xacro:hc_sr04_lidar prefix="hc_sr04_left"   parent="hc_left"   topic="scan_left"   xyz="0 0 0" rpy="0 0 0"/>
-  <xacro:hc_sr04_lidar prefix="hc_sr04_center" parent="hc_front" topic="scan_center" xyz="0 0 0" rpy="0 0 0"/>
-  <xacro:hc_sr04_lidar prefix="hc_sr04_right"  parent="hc_right" topic="scan_right"  xyz="0 0 0" rpy="0 0 0"/>
+  <!-- xyz/rpy en el marco de cada malla hc_*: cara exterior de la malla, apuntando hacia afuera
+       (hc_c -> +X del robot, hc_l -> -Y, hc_r -> +Y) -->
+  <xacro:hc_sr04_lidar prefix="hc_sr04_left"   parent="hc_left"   topic="scan_left"   xyz="0.0475 0 0.0105"  rpy="0 0 0"/>
+  <xacro:hc_sr04_lidar prefix="hc_sr04_center" parent="hc_front" topic="scan_center" xyz="0 0.0403 0.0105"  rpy="0 0 1.5708"/>
+  <xacro:hc_sr04_lidar prefix="hc_sr04_right"  parent="hc_right" topic="scan_right"  xyz="-0.0484 0 0.0105" rpy="0 0 3.14159"/>
 
   <!-- ===== Rueda Izquierda ===== -->
   <link name="rueda_izquierda">

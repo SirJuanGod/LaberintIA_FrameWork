@@ -10,11 +10,11 @@ def generate_launch_description():
     urdf_xacro = os.path.join(
         get_package_share_directory('lbt_description'),
         'urdf',
-        'lbt.urdf.xacro'
+        'rbt.urdf.xacro'
     )
 
     rbt_desc = ParameterValue(
-        Command(['xacro', urdf_xacro]), value= str
+        Command(['xacro ', urdf_xacro]), value_type=str
     )
 
     rviz_config_dir = os.path.join(

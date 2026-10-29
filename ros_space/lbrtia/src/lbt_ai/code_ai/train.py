@@ -4,9 +4,9 @@ import numpy as np
 import torch
 from torch.utils.tensorboard import SummaryWriter
 
-from ros_space.lbrtia.src.lbt_ai.code_ai.environment import GazeboEnv
-from ros_space.lbrtia.src.lbt_ai.code_ai.td3 import TD3
-from ros_space.lbrtia.src.lbt_ai.code_ai.replay_buffer import ReplayBuffer
+from environment import GazeboEnv
+from td3 import TD3
+from replay_buffer import ReplayBuffer
 
 def evaluate_policy(env, policy, eval_episodes=10):
     avg_reward = 0.

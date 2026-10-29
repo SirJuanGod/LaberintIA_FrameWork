@@ -2,8 +2,8 @@ import time
 import numpy as np
 import torch
 
-from ros_space.lbrtia.src.lbt_ai.code_ai.environment import GazeboEnv
-from ros_space.lbrtia.src.lbt_ai.code_ai.td3 import TD3
+from environment import GazeboEnv
+from td3 import TD3
 
 if __name__ == "__main__":
     ENV_NAME = "spawn_maze.launch.py"

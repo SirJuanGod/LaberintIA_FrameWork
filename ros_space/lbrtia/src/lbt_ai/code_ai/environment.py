@@ -17,6 +17,7 @@ from visualization_msgs.msg import Marker, MarkerArray
 from squaternion import Quaternion
 from ros_gz_interfaces.srv import ControlWorld, SetEntityPose
 from ros_gz_interfaces.msg import Entity
+from ament_index_python.packages import get_package_share_directory
 
 # Hiperparámetros del entorno
 GOAL_REACHED_DIST = 0.3
@@ -84,13 +85,13 @@ class GazeboEnv(Node):
         self.goal_x, self.goal_y = 1.0, 0.0
         self.upper, self.lower = 5.0, -5.0
 
-        world_file_path = "/mnt/disco/USC/Proyectos/LaberintIA/LaberintIA_FrameWork/ros_space/lbrtia/src/lbt_gazebo/worlds/maze.world"
+        world_file_path = os.path.join(get_package_share_directory('lbt_gazebo'), 'worlds', 'maze.world')
         self.maze_walls = parse_maze_walls(world_file_path)
         print(f"Se cargaron {len(self.maze_walls)} paredes desde el archivo de mundo.")
 
         self.sensor_data = np.ones(self.environment_dim) * 10.0
         self.last_odom = None
-        self.world_name = "default"
+        self.world_name = "maze_world"  # debe coincidir con <world name> de maze.world
 
         print(f"Lanzando simulacion ROS 2: {launchfile} ...")
         self.sim_process = subprocess.Popen(["ros2", "launch", "lbt_gazebo", launchfile])
@@ -114,9 +115,10 @@ class GazeboEnv(Node):
         self.spin_thread.start()
 
     # --- Callbacks ---
-    def front_callback(self, msg): self.sensor_data[0] = min(msg.ranges) if msg.ranges else 10.0
-    def left_callback(self, msg):  self.sensor_data[1] = min(msg.ranges) if msg.ranges else 10.0
-    def right_callback(self, msg): self.sensor_data[2] = min(msg.ranges) if msg.ranges else 10.0
+    # Gazebo publica inf cuando no hay obstáculo en rango; se recorta a range_max para no meter inf a la red
+    def front_callback(self, msg): self.sensor_data[0] = min(min(msg.ranges), msg.range_max) if msg.ranges else 10.0
+    def left_callback(self, msg):  self.sensor_data[1] = min(min(msg.ranges), msg.range_max) if msg.ranges else 10.0
+    def right_callback(self, msg): self.sensor_data[2] = min(min(msg.ranges), msg.range_max) if msg.ranges else 10.0
     def odom_callback(self, msg):  self.last_odom = msg
 
     # --- Interacción con Gazebo ---
