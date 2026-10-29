@@ -27,7 +27,7 @@ def evaluate_policy(env, policy, eval_episodes=10):
 
 if __name__ == "__main__":
     # Configuraciones
-    ENV_NAME = "spawn_maze.launch.py"
+    ENV_NAME = "rviz_sim.launch.py"  # simulación ligera en RViz; "spawn_maze.launch.py" para Gazebo
     SEED = 0
     MAX_TIMESTEPS = 5e6
     START_TIMESTEPS = 1e4    # Acciones aleatorias antes de usar la red

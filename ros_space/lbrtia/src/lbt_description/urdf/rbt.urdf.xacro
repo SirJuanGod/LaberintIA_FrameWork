@@ -202,11 +202,40 @@
     <origin xyz="0.0803177 0.0627602 -0.0125" rpy="1.5708 0 0"/>
     <parent link="base"/>
     <child link="rueda_derecha"/>
-    <axis xyz="0 0 1"/>
+    <!-- invertido para que, como en rueda_izquierda, girar en positivo haga avanzar el robot -->
+    <axis xyz="0 0 -1"/>
     <limit effort="10" velocity="10"/>
   </joint>
 
   <!-- ===== Sensor IMU (macro) ===== -->
   <xacro:imu_sensor prefix="imu" parent="base" topic="imu" xyz="0 0 0.01" rpy="0 0 0"/>
+
+  <!-- ===== Plugins de Gazebo (spawn_maze.launch.py; la simulación en RViz usa lbt_sim) ===== -->
+  <gazebo>
+    <plugin filename="gz-sim-diff-drive-system" name="gz::sim::systems::DiffDrive">
+      <!-- rueda_derecha está en +Y (izquierda según ROS) y rueda_izquierda en -Y -->
+      <left_joint>joint_rueda_derecha</left_joint>
+      <right_joint>joint_rueda_izquierda</right_joint>
+      <wheel_separation>0.125</wheel_separation>
+      <wheel_radius>0.033</wheel_radius>
+      <topic>/cmd_vel</topic>
+      <!-- odometría de ruedas fuera de /odom: no sigue los teletransportes del reset de lbt_ai -->
+      <odom_topic>/odom_wheels</odom_topic>
+      <tf_topic>/tf_wheels</tf_topic>
+      <frame_id>odom</frame_id>
+      <child_frame_id>base_footprint</child_frame_id>
+    </plugin>
+    <plugin filename="gz-sim-odometry-publisher-system" name="gz::sim::systems::OdometryPublisher">
+      <odom_frame>odom</odom_frame>
+      <robot_base_frame>base_footprint</robot_base_frame>
+      <odom_topic>/odom</odom_topic>
+      <tf_topic>/tf</tf_topic>
+      <dimensions>2</dimensions>
+      <odom_publish_frequency>50</odom_publish_frequency>
+    </plugin>
+    <plugin filename="gz-sim-joint-state-publisher-system" name="gz::sim::systems::JointStatePublisher">
+      <topic>/joint_states</topic>
+    </plugin>
+  </gazebo>
 
 </robot>

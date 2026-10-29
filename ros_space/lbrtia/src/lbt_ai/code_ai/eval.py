@@ -6,7 +6,7 @@ from environment import GazeboEnv
 from td3 import TD3
 
 if __name__ == "__main__":
-    ENV_NAME = "spawn_maze.launch.py"
+    ENV_NAME = "rviz_sim.launch.py"  # simulación ligera en RViz; "spawn_maze.launch.py" para Gazebo
     MODEL_NAME = "TD3_laberinto"
     MAX_EP_STEPS = 500
 

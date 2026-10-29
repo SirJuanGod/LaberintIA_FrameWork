@@ -4,7 +4,6 @@ import subprocess
 import time
 import threading
 import os
-import xml.etree.ElementTree as ET
 
 import numpy as np
 import rclpy
@@ -18,46 +17,17 @@ from squaternion import Quaternion
 from ros_gz_interfaces.srv import ControlWorld, SetEntityPose
 from ros_gz_interfaces.msg import Entity
 from ament_index_python.packages import get_package_share_directory
+from lbt_control.lbt_sim import parse_maze_walls
 
 # Hiperparámetros del entorno
 GOAL_REACHED_DIST = 0.3
-COLLISION_DIST = 0.35
+COLLISION_DIST = 0.15  # medido desde la cara del sensor; con 0.35 casi todo el pasillo (0.45 m) contaba como choque
 TIME_DELTA = 0.1
 MAX_LIN_VEL = 0.625   # m/s (Basado en v_max = w * r -> 10 * 0.0625)
 MAX_ANG_VEL = 2.0     # rad/s
 
-def parse_maze_walls(world_path):
-    """
-    Lee el archivo maze.world dinámicamente y extrae los Bounding Boxes (Cajas de colisión)
-    de todas las paredes (hwall y vwall).
-    """
-    walls = []
-    if not os.path.exists(world_path):
-        print(f"Advertencia: No se encontró el archivo de mundo en {world_path}. No habrá colisiones de spawn.")
-        return walls
-
-    tree = ET.parse(world_path)
-    root = tree.getroot()
-    
-    for link in root.findall(".//link"):
-        name = link.attrib.get('name', '')
-        if 'wall' in name:
-            # Extraer Posición: <pose>X Y Z R P Y</pose>
-            pose_text = link.find('pose').text
-            x, y = map(float, pose_text.split()[:2])
-            
-            # Extraer Tamaño: <size>X Y Z</size>
-            size_text = link.find('.//box/size').text
-            w, h = map(float, size_text.split()[:2])
-            
-            # Guardar límites min/max de la pared
-            walls.append({
-                'min_x': x - (w / 2.0), 'max_x': x + (w / 2.0),
-                'min_y': y - (h / 2.0), 'max_y': y + (h / 2.0)
-            })
-    return walls
-
-def check_pos(x, y, walls, robot_radius=0.2):
+# margen > sensor lateral (0.049 m del centro) + COLLISION_DIST, para no aparecer ya "chocado"
+def check_pos(x, y, walls, robot_radius=0.25):
     """
     Verifica si la posición (x,y) colisiona con alguna de las paredes cargadas.
     Se utiliza el 'robot_radius' como un margen de seguridad para que no aparezca rozando la pared.

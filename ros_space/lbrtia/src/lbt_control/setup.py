@@ -27,6 +27,7 @@ setup(
     entry_points={
         'console_scripts': [
             'lbt_control = lbt_control.lbt_control:main',
+            'lbt_sim = lbt_control.lbt_sim:main',
         ],
     },
 )

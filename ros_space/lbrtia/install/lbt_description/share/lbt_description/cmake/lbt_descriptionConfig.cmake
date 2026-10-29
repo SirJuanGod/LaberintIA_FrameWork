@@ -1,1 +1,0 @@
-/mnt/disco/USC/Proyectos/LaberintIA/LaberintIA_FrameWork/ros_space/lbrtia/build/lbt_description/ament_cmake_core/lbt_descriptionConfig.cmake

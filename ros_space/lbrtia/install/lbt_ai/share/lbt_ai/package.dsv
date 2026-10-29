@@ -1,8 +1,0 @@
-source;share/lbt_ai/hook/cmake_prefix_path.ps1
-source;share/lbt_ai/hook/cmake_prefix_path.dsv
-source;share/lbt_ai/hook/cmake_prefix_path.sh
-source;share/lbt_ai/local_setup.bash
-source;share/lbt_ai/local_setup.dsv
-source;share/lbt_ai/local_setup.ps1
-source;share/lbt_ai/local_setup.sh
-source;share/lbt_ai/local_setup.zsh
